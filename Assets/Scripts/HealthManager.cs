@@ -6,7 +6,7 @@ public class HealthManager : MonoBehaviour
 {
     public static HealthManager instance;
 
-    public int currentHealth, maxHealth;
+    public static int currentHealth, maxHealth, lives;
 
     public float invincibleLength = 2f;
     private float invincCounter;
@@ -21,7 +21,8 @@ public class HealthManager : MonoBehaviour
 
     void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = 1;
+        lives = 3;
     }
 
     void Update()
@@ -53,13 +54,21 @@ public class HealthManager : MonoBehaviour
     {
         if (invincCounter <= 0)
         {
-            currentHealth--;
+            PlayerController.bones--;
+            PlayerController.bones--;
+            PlayerController.bones--;
+
             Instantiate(hitEffect, PlayerController.instance.transform.position + new Vector3(0f, 1f, 0f), PlayerController.instance.transform.rotation);
 
-            if (currentHealth <= 0)
+            if (PlayerController.bones <= 0)
             {
-                currentHealth = 0;
+                lives--;
                 GameManager.instance.Respawn();
+            }
+
+            if (PlayerController.bones <= 0 && lives < 0)
+            {
+                GameManager.instance.GameOver();
             }
 
             else
@@ -70,19 +79,8 @@ public class HealthManager : MonoBehaviour
         }
     }
 
-    public void ResetHealth()
-    {
-        currentHealth = maxHealth;
-    }
-
     public void AddHealth(int amountToHeal)
     {
-        currentHealth += amountToHeal;
         Instantiate(healEffect, PlayerController.instance.transform.position + new Vector3(0f, 1f, 0f), PlayerController.instance.transform.rotation);
-
-        if (currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
     }
 }

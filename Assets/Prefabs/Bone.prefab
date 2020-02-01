@@ -59,8 +59,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b49251f24d5b80b47bd3d80bbecf43a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 1
-  isFullHeal: 0
+  healAmount: 0
+  respawnTimer: 0
+  meshRenderer: {fileID: 1474839434822011037}
+  capsuleCollider: {fileID: 1474839433257936984}
 --- !u!1 &1474839434822011027
 GameObject:
   m_ObjectHideFlags: 0

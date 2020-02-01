@@ -34,7 +34,7 @@ public class ModelSwitcher : MonoBehaviour
             model1.SetActive(true);
             model2.SetActive(false);
             model3.SetActive(false);
-            //GameObject.Find("Player").GetComponent<CharacterControl>().SkinnedMeshAnimator = Resources.Load<Animator>("Goemon");
+            //GameObject.Find("Player").GetComponent<PlayerController>().anim = Resources.Load<Animator>("Skull");
         }
 
         if (modelSwitch == 2)
@@ -42,7 +42,7 @@ public class ModelSwitcher : MonoBehaviour
             model1.SetActive(false);
             model2.SetActive(true);
             model3.SetActive(false);
-            //GameObject.Find("Player").GetComponent<CharacterControl>().SkinnedMeshAnimator = Resources.Load<Animator>("Ebisumaru");
+            //GameObject.Find("Player").GetComponent<PlayerController>().anim = Resources.Load<Animator>("Torso");
         }
 
         if (modelSwitch == 3)
@@ -50,7 +50,7 @@ public class ModelSwitcher : MonoBehaviour
             model1.SetActive(false);
             model2.SetActive(false);
             model3.SetActive(true);
-            //GameObject.Find("Player").GetComponent<CharacterControl>().SkinnedMeshAnimator = Resources.Load<Animator>("Yae");
+            //GameObject.Find("Player").GetComponent<PlayerController>().anim = Resources.Load<Animator>("Skeleton");
         }
     }
 }

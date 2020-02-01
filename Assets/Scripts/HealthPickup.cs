@@ -5,33 +5,33 @@ using UnityEngine;
 public class HealthPickup : MonoBehaviour
 {
     public int healAmount;
-    public bool isFullHeal;
+    public float respawnTimer = 0f;
 
-    void Start()
-    {
-        
-    }
+    public MeshRenderer meshRenderer;
+    public CapsuleCollider capsuleCollider;
 
     void Update()
     {
-        
+        respawnTimer += Time.deltaTime;
+
+        if (respawnTimer >= 120f)
+        {
+            meshRenderer.enabled = true;
+            capsuleCollider.enabled = true;
+            respawnTimer = 0f;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            Destroy(gameObject);
+            meshRenderer.enabled = false;
+            capsuleCollider.enabled = false;
+            respawnTimer = 0f;
 
-            if (isFullHeal)
-            {
-                HealthManager.instance.ResetHealth();       
-            }
-
-            else
-            {
-                HealthManager.instance.AddHealth(healAmount);
-            }
+            PlayerController.bones++;
+            HealthManager.instance.AddHealth(healAmount);
         }
     }
 }

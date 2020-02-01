@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     public float fadeSpeed = 1f;
     public bool fadeToBlack, fadeFromBlack;
 
+    public Text boneCounter, livesCounter;
+
     private void Awake()
     {
         instance = this;
@@ -37,5 +39,8 @@ public class UIManager : MonoBehaviour
                 fadeFromBlack = false;
             }
         }
+
+        boneCounter.text = "Bones x" + PlayerController.bones;
+        livesCounter.text = "Lives x" + HealthManager.lives;
     }
 }

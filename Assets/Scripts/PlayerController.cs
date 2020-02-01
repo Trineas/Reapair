@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public float gravityScale = 5f;
     public float rotateSpeed;
 
+    public static int bones, minBones;
+
     private Vector3 moveDirection;
 
     public CharacterController charController;
@@ -18,10 +20,7 @@ public class PlayerController : MonoBehaviour
     public GameObject playerModel;
     public Animator anim;
 
-    public static bool armsEnabled;
-    public bool armsEnabledViewer;
-    public static bool everythingEnabled;
-    public bool everythingEnabledViewer;
+    public static bool skullEnabled, armsEnabled, everythingEnabled;
 
     public bool isKnocking;
     public float knockBackLength = 0.5f;
@@ -38,13 +37,53 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         mainCam = Camera.main;
+        armsEnabled = false;
+        everythingEnabled = false;
+        bones = 1;
     }
 
     void Update()
     {
-        if (!armsEnabledViewer && !everythingEnabledViewer)
+        if (bones <= 5)
         {
-            moveSpeed = 2f;
+            skullEnabled = true;
+            armsEnabled = false;
+            everythingEnabled = false;
+        }
+
+        if (bones >= 6 && bones <= 10)
+        {
+            skullEnabled = false;
+            armsEnabled = true;
+            everythingEnabled = false;
+        }
+
+        if (bones >= 11)
+        {
+            skullEnabled = false;
+            armsEnabled = false;
+            everythingEnabled = true;
+        }
+
+        if (skullEnabled)
+        {
+            moveSpeed = 3f;
+            jumpForce = 0f;
+            HealthManager.currentHealth = 1;
+        }
+
+        if (armsEnabled)
+        {
+            moveSpeed = 5f;
+            jumpForce = 10f;
+            HealthManager.currentHealth = 2;
+        }
+
+        if (everythingEnabled)
+        {
+            moveSpeed = 10f;
+            jumpForce = 15f;
+            HealthManager.currentHealth = 3;
         }
 
         if (!isKnocking)
@@ -59,19 +98,21 @@ public class PlayerController : MonoBehaviour
             {
                 moveDirection.y = 0f;
 
-                if (everythingEnabledViewer)
+                if (everythingEnabled)
                 {
-                    everythingEnabled = true;
-                    armsEnabledViewer = false;
-                    armsEnabled = false;
-                    moveSpeed = 10;
-
                     if (Input.GetButtonDown("Jump"))
                     {
                     moveDirection.y = jumpForce;
                     }
                 }
 
+                if (armsEnabled)
+                {
+                    if (Input.GetButtonDown("Jump"))
+                    {
+                    moveDirection.y = jumpForce;
+                    }
+                }
             }
 
             moveDirection.y += Physics.gravity.y * Time.deltaTime * gravityScale;
@@ -84,13 +125,6 @@ public class PlayerController : MonoBehaviour
                 Quaternion newRotation = Quaternion.LookRotation(new Vector3(moveDirection.x, 0f, moveDirection.z));
                 playerModel.transform.rotation = Quaternion.Slerp(playerModel.transform.rotation, newRotation, rotateSpeed * Time.deltaTime);
             }   
-
-            if (armsEnabledViewer)
-            {
-                everythingEnabledViewer = false;
-                armsEnabled = true;
-                moveSpeed = 5f;
-            }
         }
 
         if (isKnocking)

@@ -33,20 +33,29 @@ public class GameManager : MonoBehaviour
         PlayerController.instance.gameObject.SetActive(false);
         CameraController.instance.cmBrain.enabled = false;
         UIManager.instance.fadeToBlack = true;
+        PlayerController.armsEnabled = false;
+        PlayerController.everythingEnabled = false;
+        PlayerController.skullEnabled = true;
 
         Instantiate(deathEffect, PlayerController.instance.transform.position + new Vector3(0f, 1f, 0f), PlayerController.instance.transform.rotation);
 
         yield return new WaitForSeconds(2f);
 
-        HealthManager.instance.ResetHealth();
+        PlayerController.bones = 1;
         UIManager.instance.fadeFromBlack = true;
         PlayerController.instance.transform.position = respawnPosition;
         CameraController.instance.cmBrain.enabled = true;
         PlayerController.instance.gameObject.SetActive(true);
+
     }
 
     public void SetSpawnPoint(Vector3 newSpawnPoint)
     {
         respawnPosition = newSpawnPoint;
+    }
+
+    public void GameOver()
+    {
+        
     }
 }
