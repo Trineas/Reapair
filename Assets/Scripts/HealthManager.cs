@@ -11,6 +11,9 @@ public class HealthManager : MonoBehaviour
     public float invincibleLength = 2f;
     private float invincCounter;
 
+    public GameObject healEffect;
+    public GameObject hitEffect;
+
     private void Awake()
     {
         instance = this;
@@ -51,6 +54,7 @@ public class HealthManager : MonoBehaviour
         if (invincCounter <= 0)
         {
             currentHealth--;
+            Instantiate(hitEffect, PlayerController.instance.transform.position + new Vector3(0f, 1f, 0f), PlayerController.instance.transform.rotation);
 
             if (currentHealth <= 0)
             {
@@ -69,5 +73,16 @@ public class HealthManager : MonoBehaviour
     public void ResetHealth()
     {
         currentHealth = maxHealth;
+    }
+
+    public void AddHealth(int amountToHeal)
+    {
+        currentHealth += amountToHeal;
+        Instantiate(healEffect, PlayerController.instance.transform.position + new Vector3(0f, 1f, 0f), PlayerController.instance.transform.rotation);
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
     }
 }
