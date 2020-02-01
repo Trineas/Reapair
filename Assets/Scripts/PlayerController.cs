@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public float gravityScale = 5f;
     public float rotateSpeed;
 
-    public static int bones, minBones;
+    public static int bones, maxBones;
 
     private Vector3 moveDirection;
 
@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
         armsEnabled = false;
         everythingEnabled = false;
         bones = 1;
+        maxBones = 17;
     }
 
     void Update()
@@ -63,6 +64,11 @@ public class PlayerController : MonoBehaviour
             skullEnabled = false;
             armsEnabled = false;
             everythingEnabled = true;
+        }
+
+        if (bones >= 17)
+        {
+            bones = maxBones;
         }
 
         if (skullEnabled)
