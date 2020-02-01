@@ -18,10 +18,7 @@ public class PlayerController : MonoBehaviour
     public GameObject playerModel;
     public Animator anim;
 
-    public static bool armsEnabled;
-    public bool armsEnabledViewer;
-    public static bool everythingEnabled;
-    public bool everythingEnabledViewer;
+    public bool legsEnabled;
 
     public bool isKnocking;
     public float knockBackLength = 0.5f;
@@ -42,11 +39,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!armsEnabledViewer && !everythingEnabledViewer)
-        {
-            moveSpeed = 2f;
-        }
-
         if (!isKnocking)
         {
             float yStore = moveDirection.y;
@@ -59,13 +51,8 @@ public class PlayerController : MonoBehaviour
             {
                 moveDirection.y = 0f;
 
-                if (everythingEnabledViewer)
+                if (legsEnabled)
                 {
-                    everythingEnabled = true;
-                    armsEnabledViewer = false;
-                    armsEnabled = false;
-                    moveSpeed = 10;
-
                     if (Input.GetButtonDown("Jump"))
                     {
                     moveDirection.y = jumpForce;
@@ -84,13 +71,6 @@ public class PlayerController : MonoBehaviour
                 Quaternion newRotation = Quaternion.LookRotation(new Vector3(moveDirection.x, 0f, moveDirection.z));
                 playerModel.transform.rotation = Quaternion.Slerp(playerModel.transform.rotation, newRotation, rotateSpeed * Time.deltaTime);
             }   
-
-            if (armsEnabledViewer)
-            {
-                everythingEnabledViewer = false;
-                armsEnabled = true;
-                moveSpeed = 5f;
-            }
         }
 
         if (isKnocking)

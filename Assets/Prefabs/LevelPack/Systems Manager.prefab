@@ -44,8 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076710c7b7319ac45a9342ff98f920d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitEffect: {fileID: 3605162456428230389, guid: 93af31a586b81a44bb286d191812112e,
-    type: 3}
 --- !u!114 &1105474163362551747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,5 +57,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 3
+  maxHealth: 5
   invincibleLength: 2
