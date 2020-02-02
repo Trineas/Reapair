@@ -10,6 +10,8 @@ public class HealthPickup : MonoBehaviour
     public MeshRenderer meshRenderer;
     public CapsuleCollider capsuleCollider;
 
+    public int soundToPlay;
+
     void Update()
     {
         respawnTimer += Time.deltaTime;
@@ -26,6 +28,7 @@ public class HealthPickup : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            AudioManager.instance.PlaySFX(soundToPlay);
             meshRenderer.enabled = false;
             capsuleCollider.enabled = false;
             respawnTimer = 0f;

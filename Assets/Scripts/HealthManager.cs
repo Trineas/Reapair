@@ -14,6 +14,8 @@ public class HealthManager : MonoBehaviour
     public GameObject healEffect;
     public GameObject hitEffect;
 
+    public int soundToPlay;
+
     private void Awake()
     {
         instance = this;
@@ -54,6 +56,7 @@ public class HealthManager : MonoBehaviour
     {
         if (invincCounter <= 0)
         {
+            AudioManager.instance.PlaySFX(soundToPlay);
             PlayerController.bones--;
             PlayerController.bones--;
             PlayerController.bones--;

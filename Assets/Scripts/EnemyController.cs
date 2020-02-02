@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour
         isChasing,
         isAttacking,
     };
+
     public AIState currentState;
 
     public float waitAtPoint = 2f;
@@ -30,13 +31,43 @@ public class EnemyController : MonoBehaviour
     public float timeBetweenAttacks = 2f;
     private float attackCounter;
 
+    public int idleSound, walkSound, attackSound;
+    public bool idleOn, walkOn, attackOn;
+
     void Start()
     {
         waitCounter = waitAtPoint;
+        walkOn = false;
+        idleOn = false;
+        attackOn = false;
     }
 
     void Update()
     {
+        if (!walkOn && anim.GetBool("IsMoving"))
+        {
+            AudioManager.instance.PlaySFX(walkSound);
+            walkOn = true;
+        }
+
+        if (walkOn && !anim.GetBool("IsMoving"))
+        {
+            AudioManager.instance.sfx[1].Stop();
+            walkOn = false;
+        }
+
+        if (!idleOn && !anim.GetBool("IsMoving"))
+        {
+            AudioManager.instance.PlaySFX(walkSound);
+            walkOn = true;
+        }
+
+        if (idleOn && anim.GetBool("IsMoving"))
+        {
+            AudioManager.instance.sfx[2].Stop();
+            walkOn = false;
+        }
+
         float distanceToPlayer = Vector3.Distance(transform.position, PlayerController.instance.transform.position);
 
         switch(currentState)
@@ -65,8 +96,6 @@ public class EnemyController : MonoBehaviour
 
         case AIState.isPatroling:
 
-            //agent.SetDestination(patrolPoints[currentPatrolPoint].position);
-
         if (agent.remainingDistance <= 0.2f)
         {
             currentPatrolPoint++;
@@ -75,7 +104,6 @@ public class EnemyController : MonoBehaviour
                 currentPatrolPoint = 0;
             }
 
-            //agent.SetDestination(patrolPoints[currentPatrolPoint].position);
             currentState = AIState.isIdle;
             waitCounter = waitAtPoint;
         }
@@ -126,6 +154,19 @@ public class EnemyController : MonoBehaviour
                 if (distanceToPlayer < attackRange)
                 {
                     anim.SetTrigger("Attack");
+
+                    if (!attackOn)
+                    {
+                    AudioManager.instance.PlaySFX(walkSound);
+                    attackOn = true;
+                    }
+
+                    if (attackOn)
+                    {
+                    AudioManager.instance.sfx[2].Stop();
+                    attackOn = false;
+                    }
+
                     attackCounter = timeBetweenAttacks;
                 }
 

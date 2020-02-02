@@ -12,10 +12,7 @@ public class UIManager : MonoBehaviour
     public float fadeSpeed = 1f;
     public bool fadeToBlack, fadeFromBlack;
 
-    public Text livesCounter;
-
-    //public Image boneSource;
-    public Image bone1, bone2, bone3, bone4, bone5, bone6, bone7, bone8, bone9, bone10, bone11;
+    public Image bone1, bone2, bone3, bone4, bone5, bone6, bone7, bone8, bone9, bone10, bone11, lives0, lives1, lives2, lives3;
 
     public GameObject pauseScreen;
 
@@ -213,7 +210,37 @@ public class UIManager : MonoBehaviour
             bone11.enabled = true;
         }
 
-        livesCounter.text = "Lives x" + HealthManager.lives;
+        if (HealthManager.lives <= 0)
+        {
+            lives0.enabled = true;
+            lives1.enabled = false;
+            lives2.enabled = false;
+            lives3.enabled = false;
+        }
+
+        if (HealthManager.lives == 1)
+        {
+            lives0.enabled = false;
+            lives1.enabled = true;
+            lives2.enabled = false;
+            lives3.enabled = false;
+        }
+
+        if (HealthManager.lives == 2)
+        {
+            lives0.enabled = false;
+            lives1.enabled = false;
+            lives2.enabled = true;
+            lives3.enabled = false;
+        }
+
+        if (HealthManager.lives >= 3)
+        {
+            lives0.enabled = false;
+            lives1.enabled = false;
+            lives2.enabled = false;
+            lives3.enabled = true;
+        }
     }
 
     public void Resume()

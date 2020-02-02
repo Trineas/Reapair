@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject[] playerPieces;
 
+    public int jumpSound, rollSound, walkSound;
+    public bool jumpOn, rollOn, walkOn;
+
     private void Awake()
     {
         instance = this;
@@ -41,6 +44,9 @@ public class PlayerController : MonoBehaviour
         everythingEnabled = false;
         bones = 1;
         maxBones = 11;
+        jumpOn = false;
+        rollOn = false;
+        walkOn = false;
     }
 
     void Update()
@@ -105,6 +111,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Input.GetButtonDown("Jump"))
                     {
+                    AudioManager.instance.PlaySFX(jumpSound);
                     moveDirection.y = jumpForce;
                     }
                 }
@@ -113,6 +120,7 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Input.GetButtonDown("Jump"))
                     {
+                    AudioManager.instance.PlaySFX(jumpSound);
                     moveDirection.y = jumpForce;
                     }
                 }
@@ -155,6 +163,31 @@ public class PlayerController : MonoBehaviour
 
         anim.SetFloat("Speed", Mathf.Abs(moveDirection.x) + Mathf.Abs(moveDirection.z));
         anim.SetBool("Grounded", charController.isGrounded);
+
+        if (!rollOn && anim.GetFloat("Speed") > 0.1f && ModelSwitcher.modelSwitch == 1)
+        {
+            AudioManager.instance.PlaySFX(rollSound);
+            rollOn = true;
+        }
+
+        if (rollOn && anim.GetFloat("Speed") < 0.1f && ModelSwitcher.modelSwitch == 1)
+        {
+            AudioManager.instance.sfx[2].Stop();
+            rollOn = false;
+        }
+
+        if (!walkOn && anim.GetFloat("Speed") > 0.1f && ModelSwitcher.modelSwitch == 2 || ModelSwitcher.modelSwitch == 3)
+        {
+            rollOn = false;
+            AudioManager.instance.PlaySFX(walkSound);
+            walkOn = true;
+        }
+
+        if (walkOn && anim.GetFloat("Speed") < 0.1f && ModelSwitcher.modelSwitch == 2 || ModelSwitcher.modelSwitch == 3)
+        {
+            AudioManager.instance.sfx[4].Stop();
+            walkOn = false;
+        }
     }
 
     public void Knockback()

@@ -59,9 +59,14 @@ MonoBehaviour:
   knockBackLength: 0.5
   knockbackPower: {x: 3, y: 8}
   playerPieces:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 397227484712547690}
+  - {fileID: 2939887952934320683}
+  jumpSound: 2
+  rollSound: 2
+  walkSound: 4
+  jumpOn: 0
+  rollOn: 0
+  walkOn: 0
 --- !u!143 &6923269141779237608
 CharacterController:
   m_ObjectHideFlags: 0
@@ -73,13 +78,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1
-  m_Radius: 0.29
+  m_Height: 0.5
+  m_Radius: 0.34
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.58, z: 0}
+  m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!114 &713633506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,11 +111,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Skeleton
-      objectReference: {fileID: 0}
-    - target: {fileID: 8461369350881031629, guid: d4cc30814c79b8c4aabeac1280a0198a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4843493034596419550, guid: d4cc30814c79b8c4aabeac1280a0198a,
         type: 3}
@@ -272,7 +272,7 @@ PrefabInstance:
     - target: {fileID: 4473173173039856726, guid: 1121038a5387596429e7c01e0e9c67a9,
         type: 3}
       propertyPath: m_Name
-      value: Skull 1
+      value: Skull
       objectReference: {fileID: 0}
     - target: {fileID: 596936501582761541, guid: 1121038a5387596429e7c01e0e9c67a9,
         type: 3}
@@ -282,7 +282,7 @@ PrefabInstance:
     - target: {fileID: 596936501582761541, guid: 1121038a5387596429e7c01e0e9c67a9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 596936501582761541, guid: 1121038a5387596429e7c01e0e9c67a9,
         type: 3}
@@ -329,11 +329,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 596936501582761541, guid: 1121038a5387596429e7c01e0e9c67a9,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 596936501582761541, guid: 1121038a5387596429e7c01e0e9c67a9,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 596936501582761541, guid: 1121038a5387596429e7c01e0e9c67a9,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7404688907106427711, guid: 1121038a5387596429e7c01e0e9c67a9,
         type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 7a3d0abff0b4af146be3c6966fab6f16, type: 2}
+    - target: {fileID: 524457248475551489, guid: 1121038a5387596429e7c01e0e9c67a9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 153fb62f4386a1544897b4d0d36965f5, type: 2}
+    - target: {fileID: 524457248475551489, guid: 1121038a5387596429e7c01e0e9c67a9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9486f8bb859a4064fb5bfb72b558b6aa, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1121038a5387596429e7c01e0e9c67a9, type: 3}
 --- !u!1 &8731354697075215572 stripped
@@ -351,6 +376,18 @@ Transform:
 --- !u!95 &2449213618917020605 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7404688907106427711, guid: 1121038a5387596429e7c01e0e9c67a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 5134076753580634242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &397227484712547690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4808960196771808744, guid: 1121038a5387596429e7c01e0e9c67a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 5134076753580634242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2939887952934320683 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8066917935619902121, guid: 1121038a5387596429e7c01e0e9c67a9,
     type: 3}
   m_PrefabInstance: {fileID: 5134076753580634242}
   m_PrefabAsset: {fileID: 0}
