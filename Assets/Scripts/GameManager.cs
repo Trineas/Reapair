@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick1Button7))
         {
             PauseUnpause();
         }
@@ -64,7 +64,10 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        
+        UIManager.instance.GameOverScreen();
+
+        Cursor.visible = true;;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void PauseUnpause()

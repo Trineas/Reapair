@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public CharacterController charController;
     private Camera mainCam;
     public GameObject playerModel;
-    public Animator anim;
+    public Animator anim1, anim2, anim3;
 
     public static bool skullEnabled, armsEnabled, everythingEnabled;
 
@@ -28,9 +28,6 @@ public class PlayerController : MonoBehaviour
     public Vector2 knockbackPower;
 
     public GameObject[] playerPieces;
-
-    public int jumpSound, rollSound, walkSound;
-    public bool jumpOn, rollOn, walkOn;
 
     private void Awake()
     {
@@ -44,9 +41,6 @@ public class PlayerController : MonoBehaviour
         everythingEnabled = false;
         bones = 1;
         maxBones = 11;
-        jumpOn = false;
-        rollOn = false;
-        walkOn = false;
     }
 
     void Update()
@@ -111,7 +105,6 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Input.GetButtonDown("Jump"))
                     {
-                    AudioManager.instance.PlaySFX(jumpSound);
                     moveDirection.y = jumpForce;
                     }
                 }
@@ -120,7 +113,6 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Input.GetButtonDown("Jump"))
                     {
-                    AudioManager.instance.PlaySFX(jumpSound);
                     moveDirection.y = jumpForce;
                     }
                 }
@@ -161,33 +153,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        anim.SetFloat("Speed", Mathf.Abs(moveDirection.x) + Mathf.Abs(moveDirection.z));
-        anim.SetBool("Grounded", charController.isGrounded);
+        anim1.SetFloat("Speed", Mathf.Abs(moveDirection.x) + Mathf.Abs(moveDirection.z));
+        anim2.SetFloat("Speed", Mathf.Abs(moveDirection.x) + Mathf.Abs(moveDirection.z));
+        anim3.SetFloat("Speed", Mathf.Abs(moveDirection.x) + Mathf.Abs(moveDirection.z));
 
-        if (!rollOn && anim.GetFloat("Speed") > 0.1f && ModelSwitcher.modelSwitch == 1)
-        {
-            AudioManager.instance.PlaySFX(rollSound);
-            rollOn = true;
-        }
-
-        if (rollOn && anim.GetFloat("Speed") < 0.1f && ModelSwitcher.modelSwitch == 1)
-        {
-            AudioManager.instance.sfx[2].Stop();
-            rollOn = false;
-        }
-
-        if (!walkOn && anim.GetFloat("Speed") > 0.1f && ModelSwitcher.modelSwitch == 2 || ModelSwitcher.modelSwitch == 3)
-        {
-            rollOn = false;
-            AudioManager.instance.PlaySFX(walkSound);
-            walkOn = true;
-        }
-
-        if (walkOn && anim.GetFloat("Speed") < 0.1f && ModelSwitcher.modelSwitch == 2 || ModelSwitcher.modelSwitch == 3)
-        {
-            AudioManager.instance.sfx[4].Stop();
-            walkOn = false;
-        }
+        anim1.SetBool("Grounded", charController.isGrounded);
+        anim2.SetBool("Grounded", charController.isGrounded);
+        anim3.SetBool("Grounded", charController.isGrounded);
     }
 
     public void Knockback()

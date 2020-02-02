@@ -69,7 +69,7 @@ public class HealthManager : MonoBehaviour
                 GameManager.instance.Respawn();
             }
 
-            if (PlayerController.bones <= 0 && lives < 0)
+            if (PlayerController.bones <= 0 && lives < 1)
             {
                 GameManager.instance.GameOver();
             }

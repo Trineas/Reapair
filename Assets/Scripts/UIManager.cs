@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class UIManager : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class UIManager : MonoBehaviour
     public GameObject pauseScreen;
 
     public string reloadLevel, mainMenu;
+
+
+    public GameObject winVideo;
+    public Image loseScreen;
 
     private void Awake()
     {
@@ -258,5 +263,20 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(mainMenu);
         Time.timeScale = 1f;
+    }
+
+    public void WinScreen()
+    {   
+        Time.timeScale = 0f;
+        winVideo.gameObject.SetActive(true);
+        AudioManager.instance.sfx[1].Stop();
+        AudioManager.instance.sfx[2].Stop();
+        AudioManager.instance.sfx[3].Stop();
+        AudioManager.instance.sfx[4].Stop();
+    }
+
+    public void GameOverScreen()
+    {
+        loseScreen.gameObject.SetActive(true);
     }
 }
