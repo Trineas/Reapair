@@ -73,23 +73,20 @@ public class PlayerController : MonoBehaviour
 
         if (skullEnabled)
         {
-            moveSpeed = 3f;
+            moveSpeed = 4.5f;
             jumpForce = 0f;
-            HealthManager.currentHealth = 1;
         }
 
         if (armsEnabled)
         {
-            moveSpeed = 5f;
+            moveSpeed = 5.5f;
             jumpForce = 10f;
-            HealthManager.currentHealth = 2;
         }
 
         if (everythingEnabled)
         {
-            moveSpeed = 10f;
+            moveSpeed = 7.5f;
             jumpForce = 15f;
-            HealthManager.currentHealth = 3;
         }
 
         if (!isKnocking)

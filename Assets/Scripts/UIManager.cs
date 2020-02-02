@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class UIManager : MonoBehaviour
     public bool fadeToBlack, fadeFromBlack;
 
     public Text boneCounter, livesCounter;
+
+    public GameObject pauseScreen;
+
+    public string reloadLevel, mainMenu;
 
     private void Awake()
     {
@@ -42,5 +47,22 @@ public class UIManager : MonoBehaviour
 
         boneCounter.text = "Bones x" + PlayerController.bones;
         livesCounter.text = "Lives x" + HealthManager.lives;
+    }
+
+    public void Resume()
+    {
+        GameManager.instance.PauseUnpause();
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(reloadLevel);
+        Time.timeScale = 1f;
+    }
+
+    public void BackToTitle()
+    {
+        SceneManager.LoadScene(mainMenu);
+        Time.timeScale = 1f;
     }
 }
