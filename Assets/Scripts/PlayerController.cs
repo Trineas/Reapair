@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
         armsEnabled = false;
         everythingEnabled = false;
         bones = 1;
-        maxBones = 17;
+        maxBones = 11;
     }
 
     void Update()
