@@ -26,7 +26,7 @@ public class HealthPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && PlayerController.bones < 11)
         {
             AudioManager.instance.PlaySFX(soundToPlay);
             meshRenderer.enabled = false;

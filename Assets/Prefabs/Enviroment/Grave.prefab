@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8915360956130032398}
-  - component: {fileID: 8915360956130032395}
-  - component: {fileID: 8915360956130032392}
   - component: {fileID: 8915360956130032393}
+  - component: {fileID: 5988809334037559269}
+  - component: {fileID: 5298458246049378835}
   m_Layer: 0
   m_Name: Grave
   m_TagString: Untagged
@@ -34,52 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8915360956130032395
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8915360956130032399}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8915360956130032392
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8915360956130032399}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 37c033e2361bab54eab801e074651cf8, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!65 &8915360956130032393
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -91,8 +45,34 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 3.712451, z: 3.8912754}
-  m_Center: {x: 0, y: 1.3562255, z: -0.039800406}
+  m_Size: {x: 2.0197754, y: 0.47864962, z: 3.5086946}
+  m_Center: {x: -0.003658533, y: -0.012501001, z: 0.0021636486}
+--- !u!65 &5988809334037559269
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8915360956130032399}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.523425, y: 0.3354721, z: 2.773715}
+  m_Center: {x: 0.0058868527, y: 0.3940935, z: -0.0026090145}
+--- !u!65 &5298458246049378835
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8915360956130032399}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9698041, y: 2.4926844, z: 2.0960064}
+  m_Center: {x: -0.041839033, y: 1.7986062, z: 0.0021634102}
 --- !u!1001 &6416330427720428956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100,11 +80,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8915360956130032398}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 39a66044416a48147b6232a3c9f78ccf,
-        type: 3}
-      propertyPath: m_Name
-      value: Gravestone_01
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 39a66044416a48147b6232a3c9f78ccf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -165,6 +140,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 87565e8ac09d2844b9a9f06828ac4de7, type: 2}
+    - target: {fileID: -927199367670048503, guid: 39a66044416a48147b6232a3c9f78ccf,
+        type: 3}
+      propertyPath: m_Name
+      value: Gravestone_01
+      objectReference: {fileID: 0}
     - target: {fileID: -113181020801827196, guid: 39a66044416a48147b6232a3c9f78ccf,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

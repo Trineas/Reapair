@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     public CharacterController charController;
     private Camera mainCam;
-    public GameObject playerModel;
+    public GameObject[] playerModels;
     public Animator anim1, anim2, anim3;
 
     public static bool skullEnabled, armsEnabled, everythingEnabled;
@@ -75,18 +75,27 @@ public class PlayerController : MonoBehaviour
         {
             moveSpeed = 4.5f;
             jumpForce = 0f;
+            charController.center = new Vector3(0f, 0.35f, 0f);
+            charController.radius = 0.34f;
+            charController.height = 0.5f;
         }
 
         if (armsEnabled)
         {
             moveSpeed = 5.5f;
             jumpForce = 10f;
+            charController.center = new Vector3(0f, 0.80f, 0f);
+            charController.radius = 0.34f;
+            charController.height = 1.75f;
         }
 
         if (everythingEnabled)
         {
             moveSpeed = 7.5f;
             jumpForce = 15f;
+            charController.center = new Vector3(0f, 1.45f, 0f);
+            charController.radius = 0.34f;
+            charController.height = 2.75f;
         }
 
         if (!isKnocking)
@@ -126,7 +135,9 @@ public class PlayerController : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0f, mainCam.transform.rotation.eulerAngles.y, 0f);
                 Quaternion newRotation = Quaternion.LookRotation(new Vector3(moveDirection.x, 0f, moveDirection.z));
-                playerModel.transform.rotation = Quaternion.Slerp(playerModel.transform.rotation, newRotation, rotateSpeed * Time.deltaTime);
+                playerModels[0].transform.rotation = Quaternion.Slerp(playerModels[0].transform.rotation, newRotation, rotateSpeed * Time.deltaTime);
+                playerModels[1].transform.rotation = Quaternion.Slerp(playerModels[1].transform.rotation, newRotation, rotateSpeed * Time.deltaTime);
+                playerModels[2].transform.rotation = Quaternion.Slerp(playerModels[2].transform.rotation, newRotation, rotateSpeed * Time.deltaTime);
             }   
         }
 
@@ -135,7 +146,7 @@ public class PlayerController : MonoBehaviour
             knockBackCounter -= Time.deltaTime;
 
             float yStore = moveDirection.y;
-            moveDirection = playerModel.transform.forward * -knockbackPower.x;
+            moveDirection = playerModels[0].transform.forward * -knockbackPower.x;
             moveDirection.y = yStore;
 
             if (charController.isGrounded)
