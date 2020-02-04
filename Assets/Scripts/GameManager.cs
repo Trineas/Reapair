@@ -64,9 +64,21 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        StartCoroutine(GameOverCo());
+    }
+
+    public IEnumerator GameOverCo()
+    {
+        PlayerController.instance.gameObject.SetActive(false);
+        CameraController.instance.cmBrain.enabled = false;
+        UIManager.instance.fadeToBlack = true;
+
+        yield return new WaitForSeconds(2f);
+
+        UIManager.instance.fadeFromBlack = true;
         UIManager.instance.GameOverScreen();
 
-        Cursor.visible = true;;
+        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
