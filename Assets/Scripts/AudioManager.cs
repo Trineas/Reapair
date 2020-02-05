@@ -11,6 +11,8 @@ public class AudioManager : MonoBehaviour
 
     public int levelMusicToplay;
 
+    public bool levelOneActive;
+
 
     private void Awake()
     {
@@ -19,12 +21,16 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        PlayMusic(levelMusicToplay);
-    }
+        if (levelOneActive)
+        {
+            StartCoroutine(loopLevelOneMusic());
+        }
 
-    void Update()
-    {
-        PlaySFX(4);
+        else
+        {
+            PlayMusic(levelMusicToplay);
+        }
+
     }
 
     public void PlayMusic(int musicToPlay)
@@ -40,5 +46,14 @@ public class AudioManager : MonoBehaviour
     public void PlaySFX(int sfxToPlay)
     {
         sfx[sfxToPlay].Play();
+    }
+
+    public IEnumerator loopLevelOneMusic()
+    {
+        music[1].Play();
+
+        yield return new WaitForSeconds(87.5f);
+
+        music[2].Play();
     }
 }

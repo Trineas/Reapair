@@ -72,9 +72,11 @@ public class GameManager : MonoBehaviour
         PlayerController.instance.gameObject.SetActive(false);
         CameraController.instance.cmBrain.enabled = false;
         UIManager.instance.fadeToBlack = true;
+        UIManager.instance.hudScreen.SetActive(false);
 
         yield return new WaitForSeconds(2f);
 
+        
         UIManager.instance.fadeFromBlack = true;
         UIManager.instance.GameOverScreen();
 

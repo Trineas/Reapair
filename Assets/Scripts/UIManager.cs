@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
 
     public Image bone1, bone2, bone3, bone4, bone5, bone6, bone7, bone8, bone9, bone10, bone11, lives0, lives1, lives2, lives3;
 
-    public GameObject pauseScreen;
+    public GameObject pauseScreen, hudScreen;
 
     public string reloadLevel, mainMenu;
 
@@ -269,6 +269,7 @@ public class UIManager : MonoBehaviour
     {   
         Time.timeScale = 0f;
         winVideo.gameObject.SetActive(true);
+        hudScreen.gameObject.SetActive(false);
         AudioManager.instance.sfx[1].Stop();
         AudioManager.instance.sfx[2].Stop();
         AudioManager.instance.sfx[3].Stop();

@@ -31,43 +31,17 @@ public class EnemyController : MonoBehaviour
     public float timeBetweenAttacks = 2f;
     private float attackCounter;
 
-    public int idleSound, walkSound, attackSound;
-    public bool idleOn, walkOn, attackOn;
+    public bool walkOn;
 
     void Start()
     {
         waitCounter = waitAtPoint;
         walkOn = false;
-        idleOn = false;
-        attackOn = false;
+
     }
 
     void Update()
     {
-        if (!walkOn && anim.GetBool("IsMoving"))
-        {
-            AudioManager.instance.PlaySFX(walkSound);
-            walkOn = true;
-        }
-
-        if (walkOn && !anim.GetBool("IsMoving"))
-        {
-            AudioManager.instance.sfx[1].Stop();
-            walkOn = false;
-        }
-
-        if (!idleOn && !anim.GetBool("IsMoving"))
-        {
-            AudioManager.instance.PlaySFX(walkSound);
-            walkOn = true;
-        }
-
-        if (idleOn && anim.GetBool("IsMoving"))
-        {
-            AudioManager.instance.sfx[2].Stop();
-            walkOn = false;
-        }
-
         float distanceToPlayer = Vector3.Distance(transform.position, PlayerController.instance.transform.position);
 
         switch(currentState)
@@ -154,18 +128,6 @@ public class EnemyController : MonoBehaviour
                 if (distanceToPlayer < attackRange)
                 {
                     anim.SetTrigger("Attack");
-
-                    if (!attackOn)
-                    {
-                    AudioManager.instance.PlaySFX(walkSound);
-                    attackOn = true;
-                    }
-
-                    if (attackOn)
-                    {
-                    AudioManager.instance.sfx[2].Stop();
-                    attackOn = false;
-                    }
 
                     attackCounter = timeBetweenAttacks;
                 }

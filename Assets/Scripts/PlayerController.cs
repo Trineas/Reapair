@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
         {
             moveSpeed = 7.5f;
             jumpForce = 15f;
-            charController.center = new Vector3(0f, 1.45f, 0f);
+            charController.center = new Vector3(0f, 1.57f, 0f);
             charController.radius = 0.34f;
             charController.height = 2.75f;
         }
